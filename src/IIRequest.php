@@ -2,10 +2,13 @@
 
 namespace Immersioninteractive\GenericRequest;
 
-use Illuminate\Foundation\Http\FormRequest;
 use IIResponse;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
-class IIRequest extends FormRequest{
+class IIRequest extends FormRequest
+{
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -17,11 +20,12 @@ class IIRequest extends FormRequest{
     }
 
     protected function failedValidation(Validator $validator)
-    {
+    {        
         foreach($validator->errors()->toArray() as $error){            
             IIResponse::set_errors($error[0]);
         }
         
-        throw new HttpResponseException(IIResponse::response('BAD REQUEST'));
+        IIResponse::set_status_code('BAD REQUEST');
+        throw new HttpResponseException(IIResponse::response());
     }
 }
