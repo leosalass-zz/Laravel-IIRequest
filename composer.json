@@ -1,0 +1,32 @@
+{
+    "name": "immersioninteractive/GenericRequest",
+    "type": "library",
+    "description": "Request class to make our work easier with Laravel",
+    "keywords": ["Laravel","Generic"],
+    "homepage": "https://github.com/leosalass/Laravel-IIRequest",
+    "license": "MIT",
+    "authors": [{
+        "name": "Leonardo Salas",
+        "email": "info@immersioninteractive.com",
+        "role": "Full Stack Developer"
+    }],
+    "minimum-stability": "dev",
+    "require": {
+        "immersioninteractive/ResponseController": "dev-master"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Immersioninteractive\\GenericRequest\\IIRequestServiceProvider"
+            ],
+            "aliases": {
+                "IIRequest": "Immersioninteractive\\GenericRequest\\IIRequestFacade"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Immersioninteractive\\GenericRequest\\": "src/"
+        }
+    }
+}
